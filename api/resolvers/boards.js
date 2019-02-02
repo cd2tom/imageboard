@@ -1,28 +1,14 @@
 const database = require("../database");
-
-function threadsSQ(id) {
-  return database("threads")
-    .select(database.raw("json_agg(threads.*)"))
-    .whereRaw(`threads."boardsId" = ${id ? id : "boards.id"}`)
-    .as("threads");
-}
+const Board = require("../models/board");
 
 async function boards() {
-  const boards = await database("boards")
-    .leftJoin("threads", "boards.id", "threads.boardsId")
-    .select("boards.*", threadsSQ())
-    .groupBy("boards.id");
-
-  return boards;
+  const boardRecords = await database("boards");
+  return boardRecords.map(boardRecord => new Board(boardRecord));
 }
 
 async function board(_, { id }) {
-  const [board] = await database("boards")
-    .where({ "boards.id": id })
-    .leftJoin("threads", "boards.id", "threads.boardsId")
-    .select("boards.*", threadsSQ(id));
-
-  return board;
+  const [boardRecord] = await database("boards").where({ "boards.id": id });
+  return new Board(boardRecord);
 }
 
 module.exports = { boards, board };
