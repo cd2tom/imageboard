@@ -5,6 +5,7 @@ const typeDefs = gql`
     name: String!
     email: String!
     createdAt: String!
+    posts: [Post]
     id: ID!
   }
   type Board {
@@ -29,6 +30,7 @@ const typeDefs = gql`
     userdId: Int
     createdAt: String!
     thread: Thread!
+    user: User
     id: ID!
   }
   type Query {

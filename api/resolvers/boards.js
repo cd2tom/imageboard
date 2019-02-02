@@ -1,5 +1,5 @@
 const database = require("../database");
-const Board = require("../models/board");
+const { Board } = require("../models");
 
 async function boards() {
   const boardRecords = await database("boards");

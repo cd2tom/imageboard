@@ -1,13 +1,14 @@
 const database = require("../database");
+const { Post } = require("../models");
 
 async function posts() {
-  const posts = await database("posts").select();
-  return posts;
+  const postRecords = await database("posts");
+  return postRecords.map(postRecord => new Post(postRecord));
 }
 
 async function post(_, { id }) {
-  const [post] = await database("posts").where({ id });
-  return post;
+  const [postRecord] = await database("posts").where({ "posts.id": id });
+  return new Post(postRecord);
 }
 
 module.exports = { posts, post };
