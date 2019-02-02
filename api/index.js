@@ -17,6 +17,9 @@ const typeDefs = gql`
   type Query {
     users: [User]
   }
+  type Mutation {
+    addUser(name: String!, email: String!): Int
+  }
 `;
 
 const resolvers = {
@@ -25,6 +28,14 @@ const resolvers = {
       const users = await database("users").select();
       console.log(users);
       return users;
+    }
+  },
+  Mutation: {
+    addUser: async (_, { name, email }) => {
+      const [id] = await database("users")
+        .returning("id")
+        .insert({ name, email });
+      return id;
     }
   }
 };
