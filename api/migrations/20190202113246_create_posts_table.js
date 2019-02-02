@@ -1,12 +1,14 @@
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable("users", function(t) {
+  return knex.schema.createTable("posts", function(t) {
     t.increments("id").primary();
     t.string("name");
-    t.string("email");
+    t.string("body");
+    t.integer("threadsId");
+    t.integer("usersId");
     t.timestamp("createdAt").defaultTo(knex.fn.now());
   });
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists("users");
+  return knex.schema.dropTableIfExists("posts");
 };

@@ -7,9 +7,9 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "db:create": "createdb imageboard",
-    "db:migrate": "knex migrate:latest",
-    "db:rollback": "knex migrate:rollback",
-    "db:seed": "knex seed:run"
+    "db:migrate": "run.env knex migrate:latest",
+    "db:rollback": "run.env knex migrate:rollback",
+    "db:seed": "run.env knex seed:run"
   },
   "dependencies": {
     "apollo-server-express": "^2.3.3",
