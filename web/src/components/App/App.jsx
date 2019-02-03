@@ -6,6 +6,7 @@ import { ApolloProvider } from "react-apollo-hooks";
 
 import Header from "../Header/Header";
 import Home from "../Home/Home";
+import Board from "../Board/Board";
 
 import "../../css/normalize.scss";
 import "../../css/core.scss";
@@ -15,7 +16,7 @@ const client = new ApolloClient({
 });
 
 export default function App() {
-  document.title = "tom's website";
+  document.title = "tomchan";
   return (
     <ApolloProvider client={client}>
       <React.Suspense fallback="...">
@@ -24,6 +25,7 @@ export default function App() {
             <ScrollToTop />
             <Header />
             <Switch>
+              <Route path={routes.board} component={Board} />
               <Route path={routes.home} component={Home} />
             </Switch>
           </div>

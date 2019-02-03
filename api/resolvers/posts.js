@@ -7,7 +7,7 @@ async function posts() {
 }
 
 async function post(_, { id }) {
-  const [postRecord] = await database("posts").where({ "posts.id": id });
+  const [postRecord] = await database("posts").where({ id });
   return new Post(postRecord);
 }
 

@@ -27,3 +27,18 @@ h6 {
 img {
   max-width: 100%;
 }
+
+section {
+  max-width: $siteWidth;
+  margin: 0 auto;
+  padding: $normalGutter;
+
+  &.intro {
+    text-align: center;
+    border-bottom: 1px solid $colorGrey;
+
+    h1 {
+      margin-top: 0;
+    }
+  }
+}

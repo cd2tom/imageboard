@@ -36,7 +36,7 @@ const typeDefs = gql`
   type Query {
     users: [User]
     boards: [Board]
-    board(id: ID!): Board
+    board(handle: String!): Board
     threads: [Thread]
     thread(id: ID!): Thread
     posts: [Post]

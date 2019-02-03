@@ -6,8 +6,10 @@ async function boards() {
   return boardRecords.map(boardRecord => new Board(boardRecord));
 }
 
-async function board(_, { id }) {
-  const [boardRecord] = await database("boards").where({ "boards.id": id });
+async function board(_, { handle }) {
+  const [boardRecord] = await database("boards").where({
+    handle
+  });
   return new Board(boardRecord);
 }
 

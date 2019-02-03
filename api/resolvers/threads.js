@@ -7,7 +7,7 @@ async function threads() {
 }
 
 async function thread(_, { id }) {
-  const [threadRecord] = await database("threads").where({ "threads.id": id });
+  const [threadRecord] = await database("threads").where({ id });
   return new Thread(threadRecord);
 }
 
