@@ -1,0 +1,28 @@
+@import "../../css/_vars";
+
+.header {
+  background-color: $colorWhite;
+  color: $colorText;
+
+  > div {
+    display: flex;
+    align-items: center;
+  }
+
+  h2 {
+    margin: 0;
+    padding: 0 0 0 $normalGutter;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  h2 a {
+    text-decoration: none;
+    color: $colorText;
+  }
+
+  svg {
+    width: $largeGutter;
+    height: $largeGutter;
+  }
+}

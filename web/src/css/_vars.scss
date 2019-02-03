@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i");
+
+$siteWidth: 1100px;
+
+$normalGutter: 16px;
+$smallGutter: 8px;
+$largeGutter: 24px;
+$largerGutter: 48px;
+
+$fontFamily: "IBM Plex Sans";
+
+$colorWhite: #fff;
+$colorBlack: #000;
+$colorDark: #070707;
+$colorGrey: #40434e;
+$colorGreyLight: #ebeff5;
+$colorPrimary: #5b95ff;
+$colorPrimaryLight: #76a6ff;
+$colorPrimaryLighter: #95baff;
+$colorText: #070707;
+
+$transitionSpeed: 0.22s;
+
+@mixin wrapped($padded: true) {
+  > div {
+    max-width: $siteWidth;
+    margin: 0 auto;
+    position: relative;
+
+    @if $padded {
+      padding: $normalGutter;
+    }
+  }
+}

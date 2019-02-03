@@ -1,0 +1,19 @@
+@import "./_vars";
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: $colorGreyLight;
+  color: $colorText;
+  margin: 0;
+  font-family: $fontFamily, sans-serif;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+}
