@@ -21,24 +21,76 @@ h4,
 h5,
 h6 {
   font-family: $fontFamilyHeading, serif;
-  color: $colorHeading;
+  color: $colorRed;
 }
 
 img {
   max-width: 100%;
 }
 
+a {
+  color: $colorText;
+  text-decoration: none !important;
+  transition: $transitionSpeed;
+
+  &:hover {
+    color: $colorRed;
+  }
+}
+
 section {
   max-width: $siteWidth;
-  margin: 0 auto;
   padding: $normalGutter;
 
   &.intro {
     text-align: center;
+    margin: 0 auto;
     border-bottom: 1px solid $colorGrey;
 
     h1 {
       margin-top: 0;
     }
+  }
+}
+
+article {
+  & + article {
+    margin-top: $normalGutter;
+    border-top: 1px solid $colorGrey;
+    padding-top: $normalGutter;
+  }
+}
+
+.meta {
+  * {
+    display: inline-block;
+  }
+
+  * + * {
+    margin-left: $smallGutter;
+  }
+
+  .subject {
+    color: $colorBlue;
+  }
+
+  .name {
+    color: $colorGreen;
+  }
+}
+
+.post {
+  & + .post {
+    margin-top: $normalGutter;
+  }
+}
+
+.postInner {
+  display: inline-block;
+  background-color: $colorPost;
+  padding: $smallGutter $normalGutter;
+
+  p {
+    padding-left: $normalGutter;
   }
 }

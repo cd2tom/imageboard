@@ -1,6 +1,7 @@
 const routes = {
   home: "/",
-  board: "/:handle/"
+  board: "/:handle/",
+  thread: "/:handle/:id"
 };
 
 export default routes;

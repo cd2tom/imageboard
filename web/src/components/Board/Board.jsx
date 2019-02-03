@@ -1,8 +1,7 @@
 import React from "react";
 import gql from "graphql-tag";
 import { useQuery } from "react-apollo-hooks";
-
-import "./board.scss";
+import Thread from "../Thread/Thread";
 
 export default function Board({ match }) {
   const handle = match.params.handle;
@@ -15,13 +14,17 @@ export default function Board({ match }) {
 
         threads {
           id
+          subject
           name
+          body
           createdAt
 
           posts {
+            id
             name
             body
             createdAt
+            threadsId
           }
         }
       }
@@ -43,19 +46,7 @@ export default function Board({ match }) {
       </section>
       <section>
         {data.board.threads.map(thread => {
-          const firstPost = thread.posts[0];
-          const restOfPosts = thread.posts.slice(1);
-          return (
-            <article key={thread.id}>
-              <div>
-                <div>
-                  <b>{thread.name}</b> -{" "}
-                  <span>{firstPost.name ? firstPost.name : "Anon"}</span>
-                </div>
-                <p>{firstPost.body}</p>
-              </div>
-            </article>
-          );
+          return <Thread key={thread.id} thread={thread} handle={handle} />;
         })}
       </section>
     </div>

@@ -9,7 +9,8 @@
     "db:create": "createdb imageboard",
     "db:migrate": "run.env knex migrate:latest",
     "db:rollback": "run.env knex migrate:rollback",
-    "db:seed": "run.env knex seed:run"
+    "db:seed": "run.env knex seed:run",
+    "db:reset": "run.env knex migrate:rollback && run.env knex migrate:latest && run.env knex seed:run"
   },
   "dependencies": {
     "apollo-server-express": "^2.3.3",

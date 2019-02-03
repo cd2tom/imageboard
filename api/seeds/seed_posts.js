@@ -19,14 +19,13 @@ exports.seed = function(knex, Promise) {
         {
           id: 3,
           body: "I'm the second thread",
-          threadsId: 2,
           boardsId: 1
         },
         {
           id: 4,
-          name: "",
+          name: "jimmy",
           body: "first thread was better",
-          threadsId: 2,
+          threadsId: 3,
           boardsId: 1
         }
       ]);
