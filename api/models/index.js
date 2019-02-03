@@ -42,7 +42,7 @@ function Thread(attributes) {
   this.posts = function({ limit }) {
     let query = database("posts")
       .where({ threadsId: attributes.id })
-      .orderBy("createdAt", "desc");
+      .orderBy("createdAt", "asc");
     if (limit) query.limit(limit);
     return new Promise(function(resolve) {
       query.then(function(posts) {

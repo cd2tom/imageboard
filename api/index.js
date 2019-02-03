@@ -21,10 +21,11 @@ const resolvers = {
     ...threadsResolvers
   },
   Mutation: {
-    addUser: async (_, { name, email }) => {
-      const [id] = await database("users")
+    createPost: async (_, { name, body, threadsId }) => {
+      console.log(name, body, threadsId);
+      const [id] = await database("posts")
         .returning("id")
-        .insert({ name, email });
+        .insert({ name, body, threadsId });
       return id;
     }
   }

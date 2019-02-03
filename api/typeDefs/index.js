@@ -37,7 +37,7 @@ const typeDefs = gql`
     thread(id: ID!): Post
   }
   type Mutation {
-    addUser(name: String!, email: String!): Int
+    createPost(name: String!, body: String!, threadsId: Int!): Int
   }
 `;
 
