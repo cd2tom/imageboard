@@ -17,6 +17,12 @@ export default function Board({ match }) {
           id
           name
           createdAt
+
+          posts {
+            name
+            body
+            createdAt
+          }
         }
       }
     }
@@ -36,13 +42,21 @@ export default function Board({ match }) {
         </p>
       </section>
       <section>
-        {data.board.threads.map(thread => (
-          <article key={thread.id}>
-            <div>
-              <b>{thread.name}</b>
-            </div>
-          </article>
-        ))}
+        {data.board.threads.map(thread => {
+          const firstPost = thread.posts[0];
+          const restOfPosts = thread.posts.slice(1);
+          return (
+            <article key={thread.id}>
+              <div>
+                <div>
+                  <b>{thread.name}</b> -{" "}
+                  <span>{firstPost.name ? firstPost.name : "Anon"}</span>
+                </div>
+                <p>{firstPost.body}</p>
+              </div>
+            </article>
+          );
+        })}
       </section>
     </div>
   );
