@@ -3,26 +3,34 @@ const database = require("../database");
 function Board(attributes) {
   Object.assign(this, attributes);
 
-  this.threads = new Promise(function(resolve) {
-    database("posts")
-      .where({ boardsId: attributes.id, threadsId: null })
-      .then(function(threads) {
+  this.threads = function({ limit }) {
+    let query = database("posts").where({
+      boardsId: attributes.id,
+      threadsId: null
+    });
+    if (limit) query.limit(limit);
+    return new Promise(function(resolve) {
+      query.then(function(threads) {
         resolve(threads.map(thread => new Thread(thread)));
       });
-  });
+    });
+  };
 }
 
 function Thread(attributes) {
   Object.assign(this, attributes);
 
-  this.posts = new Promise(function(resolve) {
-    database("posts")
+  this.posts = function({ limit }) {
+    let query = database("posts")
       .where({ threadsId: attributes.id })
-      .orderBy("createdAt", "desc")
-      .then(function(posts) {
+      .orderBy("createdAt", "desc");
+    if (limit) query.limit(limit);
+    return new Promise(function(resolve) {
+      query.then(function(posts) {
         resolve(posts.map(post => new Post(post)));
       });
-  });
+    });
+  };
 }
 
 function Post(attributes) {

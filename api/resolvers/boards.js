@@ -1,7 +1,7 @@
 const database = require("../database");
 const { Board } = require("../models");
 
-async function boards() {
+async function boards(_, args) {
   const boardRecords = await database("boards");
   return boardRecords.map(boardRecord => new Board(boardRecord));
 }

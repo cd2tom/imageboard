@@ -13,7 +13,7 @@ const typeDefs = gql`
     name: String!
     handle: String!
     createdAt: String!
-    threads: [Post]
+    threads(limit: Int!): [Post]
   }
   type Post {
     id: ID!
@@ -24,17 +24,15 @@ const typeDefs = gql`
     userdId: Int
     createdAt: String!
     thread: Post
-    posts: [Post]
+    posts(limit: Int!): [Post]
     user: User
   }
   type Query {
     users: [User]
     boards: [Board]
     board(handle: String!): Board
-    threads: [Post]
+    threads(limit: Int!): [Post]
     thread(id: ID!): Post
-    posts: [Post]
-    post(id: ID!): Post
   }
   type Mutation {
     addUser(name: String!, email: String!): Int

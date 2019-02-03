@@ -1,8 +1,11 @@
 const database = require("../database");
 const { Thread } = require("../models");
 
-async function threads() {
-  const threadRecords = await database("posts").where({ threadsId: null });
+async function threads(_, args) {
+  console.log(args);
+  let query = database("posts").where({ threadsId: null });
+  if (limit) query = query.limit(limit);
+  const threadRecords = await query;
   return threadRecords.map(threadRecord => new Thread(threadRecord));
 }
 

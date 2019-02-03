@@ -6,7 +6,7 @@ export default function Board({ post, handle }) {
   return (
     <div className="meta">
       {post.subject && <b className="subject">{post.subject}</b>}
-      <b class="name">{post.name ? post.name : "Anon"}</b>
+      <b className="name">{post.name ? post.name : "Anon"}</b>
       <span>
         {moment.unix(post.createdAt).format("MM/DD/YY(ddd) h:mm:ssa")}
       </span>

@@ -12,14 +12,14 @@ export default function BoardPage({ match }) {
         handle
         name
 
-        threads {
+        threads(limit: 15) {
           id
           subject
           name
           body
           createdAt
 
-          posts {
+          posts(limit: 5) {
             id
             name
             body
