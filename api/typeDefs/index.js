@@ -25,6 +25,7 @@ const typeDefs = gql`
     createdAt: String!
     thread: Post
     posts(limit: Int!): [Post]
+    totalPosts: Int
     user: User
   }
   type Query {

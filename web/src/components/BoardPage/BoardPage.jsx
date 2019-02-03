@@ -17,6 +17,7 @@ export default function BoardPage({ match }) {
           subject
           name
           body
+          totalPosts
           createdAt
 
           posts(limit: 5) {

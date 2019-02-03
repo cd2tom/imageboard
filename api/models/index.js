@@ -20,6 +20,15 @@ function Board(attributes) {
 function Thread(attributes) {
   Object.assign(this, attributes);
 
+  this.totalPosts = new Promise(function(resolve) {
+    database("posts")
+      .where({ threadsId: attributes.id })
+      .count("id")
+      .then(function([{ count }]) {
+        resolve(count);
+      });
+  });
+
   this.posts = function({ limit }) {
     let query = database("posts")
       .where({ threadsId: attributes.id })

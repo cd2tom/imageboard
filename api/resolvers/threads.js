@@ -1,8 +1,7 @@
 const database = require("../database");
 const { Thread } = require("../models");
 
-async function threads(_, args) {
-  console.log(args);
+async function threads(_, { limit }) {
   let query = database("posts").where({ threadsId: null });
   if (limit) query = query.limit(limit);
   const threadRecords = await query;
