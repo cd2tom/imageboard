@@ -5,8 +5,8 @@ import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo-hooks";
 
 import Header from "../Header/Header";
-import Home from "../Home/Home";
-import Board from "../Board/Board";
+import HomePage from "../HomePage/HomePage";
+import BoardPage from "../BoardPage/BoardPage";
 
 import "../../css/normalize.scss";
 import "../../css/core.scss";
@@ -25,8 +25,8 @@ export default function App() {
             <ScrollToTop />
             <Header />
             <Switch>
-              <Route path={routes.board} component={Board} />
-              <Route path={routes.home} component={Home} />
+              <Route path={routes.board} component={BoardPage} />
+              <Route path={routes.home} component={HomePage} />
             </Switch>
           </div>
         </BrowserRouter>

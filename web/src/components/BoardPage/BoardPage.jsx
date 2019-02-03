@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import { useQuery } from "react-apollo-hooks";
 import Thread from "../Thread/Thread";
 
-export default function Board({ match }) {
+export default function BoardPage({ match }) {
   const handle = match.params.handle;
 
   const GET_BOARD = gql`

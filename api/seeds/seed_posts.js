@@ -17,6 +17,12 @@ exports.seed = function(knex, Promise) {
           boardsId: 1
         },
         {
+          id: 5,
+          body: "hue hue hue",
+          threadsId: 1,
+          boardsId: 1
+        },
+        {
           id: 3,
           body: "I'm the second thread",
           boardsId: 1

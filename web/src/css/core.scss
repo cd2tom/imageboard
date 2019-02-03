@@ -81,7 +81,7 @@ article {
 
 .post {
   & + .post {
-    margin-top: $normalGutter;
+    margin-top: $smallGutter;
   }
 }
 
@@ -89,6 +89,8 @@ article {
   display: inline-block;
   background-color: $colorPost;
   padding: $smallGutter $normalGutter;
+  border-bottom: 1px solid $colorPostBorder;
+  border-right: 1px solid $colorPostBorder;
 
   p {
     padding-left: $normalGutter;
