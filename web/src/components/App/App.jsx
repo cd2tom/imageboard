@@ -7,6 +7,7 @@ import { ApolloProvider } from "react-apollo-hooks";
 import Header from "../Header/Header";
 import HomePage from "../HomePage/HomePage";
 import BoardPage from "../BoardPage/BoardPage";
+import ThreadPage from "../ThreadPage/ThreadPage";
 
 import "../../css/normalize.scss";
 import "../../css/core.scss";
@@ -25,6 +26,7 @@ export default function App() {
             <ScrollToTop />
             <Header />
             <Switch>
+              <Route path={routes.thread} component={ThreadPage} />
               <Route path={routes.board} component={BoardPage} />
               <Route path={routes.home} component={HomePage} />
             </Switch>

@@ -15,6 +15,16 @@ function Board(attributes) {
       });
     });
   };
+
+  this.thread = function({ id }) {
+    return new Promise(function(resolve) {
+      database("posts")
+        .where({ id })
+        .then(function([thread]) {
+          resolve(new Thread(thread));
+        });
+    });
+  };
 }
 
 function Thread(attributes) {

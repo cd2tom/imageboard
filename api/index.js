@@ -13,14 +13,12 @@ const typeDefs = require("./typeDefs");
 const usersResolvers = require("./resolvers/users");
 const boardsResolvers = require("./resolvers/boards");
 const threadsResolvers = require("./resolvers/threads");
-const postsResolvers = require("./resolvers/posts");
 
 const resolvers = {
   Query: {
     ...usersResolvers,
     ...boardsResolvers,
-    ...threadsResolvers,
-    ...postsResolvers
+    ...threadsResolvers
   },
   Mutation: {
     addUser: async (_, { name, email }) => {

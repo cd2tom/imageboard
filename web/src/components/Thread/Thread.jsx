@@ -8,10 +8,12 @@ export default function Board({ thread, handle }) {
     <article className="thread">
       <Meta post={thread} handle={handle} />
       <p>{thread.body}</p>
-      <small>
-        {thread.totalPosts} replies.{" "}
-        <Link to={`/${handle}/${thread.id}`}>Click here</Link> to view.
-      </small>
+      {thread.totalPosts && (
+        <small>
+          {thread.totalPosts} replies.{" "}
+          <Link to={`/${handle}/${thread.id}`}>Click here</Link> to view.
+        </small>
+      )}
       {thread.posts.map(post => (
         <Post key={post.id} post={post} />
       ))}
