@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i");
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif:400,700");
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
 
 $siteWidth: 1100px;
 
@@ -7,17 +8,18 @@ $smallGutter: 8px;
 $largeGutter: 24px;
 $largerGutter: 48px;
 
-$fontFamily: "IBM Plex Sans";
+$fontFamily: "Roboto";
+$fontFamilyHeading: "Noto Serif";
 
 $colorWhite: #fff;
 $colorBlack: #000;
 $colorDark: #070707;
 $colorGrey: #40434e;
 $colorGreyLight: #ebeff5;
-$colorPrimary: #5b95ff;
-$colorPrimaryLight: #76a6ff;
-$colorPrimaryLighter: #95baff;
+$colorPrimary: #eff3fd;
+$colorPrimaryDark: #9591e9;
 $colorText: #070707;
+$colorHeading: #af0a0f;
 
 $transitionSpeed: 0.22s;
 

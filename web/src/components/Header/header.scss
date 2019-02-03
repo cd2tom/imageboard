@@ -1,28 +1,24 @@
 @import "../../css/_vars";
 
 .header {
-  background-color: $colorWhite;
-  color: $colorText;
+  padding: $normalGutter;
 
-  > div {
-    display: flex;
-    align-items: center;
+  span {
+    opacity: 0.5;
   }
 
-  h2 {
-    margin: 0;
-    padding: 0 0 0 $normalGutter;
-    user-select: none;
-    cursor: pointer;
+  nav {
+    text-align: center;
   }
 
-  h2 a {
-    text-decoration: none;
+  a {
     color: $colorText;
-  }
+    text-decoration: none !important;
+    transition: $transitionSpeed;
+    padding: 0 2px;
 
-  svg {
-    width: $largeGutter;
-    height: $largeGutter;
+    &:hover {
+      color: $colorHeading;
+    }
   }
 }

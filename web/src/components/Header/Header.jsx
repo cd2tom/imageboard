@@ -1,17 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import routes from "../../constants/routes";
+import gql from "graphql-tag";
+import { useQuery } from "react-apollo-hooks";
+
+const GET_BOARDS = gql`
+  {
+    boards {
+      handle
+    }
+  }
+`;
 
 import "./header.scss";
 
 export default function Header() {
+  const { data, error } = useQuery(GET_BOARDS);
+  if (error) return `Error! ${error.message}`;
+
   return (
     <header className="header">
-      <div>
-        <h2>
-          <Link to={routes.home}>tomchan.com</Link>
-        </h2>
-      </div>
+      <nav>
+        <span>[</span>
+        {data.boards.map(board => (
+          <NavLink key={board.handle} to={`${routes.home}${board.handle}`}>
+            {board.handle}
+          </NavLink>
+        ))}
+        <span>]</span>
+      </nav>
     </header>
   );
 }
