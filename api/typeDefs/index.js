@@ -2,43 +2,37 @@ const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type User {
+    id: ID!
     name: String!
     email: String!
     createdAt: String!
     posts: [Post]
-    id: ID!
   }
   type Board {
+    id: ID!
     name: String!
     handle: String!
     createdAt: String!
-    threads: [Thread]
-    id: ID!
-  }
-  type Thread {
-    name: String
-    boardsId: ID!
-    createdAt: String!
-    board: Board!
-    posts: [Post]
-    id: ID!
+    threads: [Post]
   }
   type Post {
+    id: ID!
+    subject: String
     name: String
     body: String!
     threadsId: ID!
     userdId: Int
     createdAt: String!
-    thread: Thread!
+    thread: Post
+    posts: [Post]
     user: User
-    id: ID!
   }
   type Query {
     users: [User]
     boards: [Board]
     board(handle: String!): Board
-    threads: [Thread]
-    thread(id: ID!): Thread
+    threads: [Post]
+    thread(id: ID!): Post
     posts: [Post]
     post(id: ID!): Post
   }

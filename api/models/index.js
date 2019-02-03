@@ -4,8 +4,8 @@ function Board(attributes) {
   Object.assign(this, attributes);
 
   this.threads = new Promise(function(resolve) {
-    database("threads")
-      .where({ boardsId: attributes.id })
+    database("posts")
+      .where({ boardsId: attributes.id, threadsId: null })
       .then(function(threads) {
         resolve(threads.map(thread => new Thread(thread)));
       });

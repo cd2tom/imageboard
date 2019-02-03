@@ -5,28 +5,29 @@ exports.seed = function(knex, Promise) {
       return knex("posts").insert([
         {
           id: 1,
-          name: "",
-          body: "Hi guys this is the first post!",
-          threadsId: 1,
-          usersId: 1
+          subject: "first",
+          body: "Hi guys this is the first thread!",
+          usersId: 1,
+          boardsId: 1
         },
         {
           id: 2,
-          name: "",
           body: "wow cool post, nerd",
-          threadsId: 1
+          threadsId: 1,
+          boardsId: 1
         },
         {
           id: 3,
-          name: "",
-          body: "I'm the second thread's first post!",
-          threadsId: 2
+          body: "I'm the second thread",
+          threadsId: 2,
+          boardsId: 1
         },
         {
           id: 4,
           name: "",
           body: "first thread was better",
-          threadsId: 2
+          threadsId: 2,
+          boardsId: 1
         }
       ]);
     });
