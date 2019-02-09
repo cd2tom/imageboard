@@ -25,6 +25,15 @@ function Board(attributes) {
         });
     });
   };
+
+  this.totalThreads = new Promise(function(resolve) {
+    database("posts")
+      .where({ threadsId: null, boardsId: attributes.id })
+      .count("id")
+      .then(function([{ count }]) {
+        resolve(count);
+      });
+  });
 }
 
 function Thread(attributes) {

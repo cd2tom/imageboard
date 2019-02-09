@@ -13,6 +13,7 @@ const typeDefs = gql`
     name: String!
     handle: String!
     createdAt: String!
+    totalThreads: Int!
     threads(limit: Int!): [Post]
     thread(id: Int!): Post
   }
