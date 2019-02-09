@@ -22,10 +22,15 @@ const resolvers = {
   },
   Mutation: {
     createPost: async (_, { name, body, threadsId }) => {
-      console.log(name, body, threadsId);
       const [id] = await database("posts")
         .returning("id")
         .insert({ name, body, threadsId });
+      return id;
+    },
+    createThread: async (_, { name, body, subject, boardsId }) => {
+      const [id] = await database("posts")
+        .returning("id")
+        .insert({ name, body, subject, boardsId });
       return id;
     }
   }

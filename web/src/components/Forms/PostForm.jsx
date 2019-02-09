@@ -4,7 +4,7 @@ import { useMutation } from "react-apollo-hooks";
 
 export default function PostForm({ threadsId }) {
   const CREATE_POST = gql`
-    mutation createPost($name: String!, $body: String!, $threadsId: Int!) {
+    mutation createPost($name: String, $body: String!, $threadsId: Int!) {
       createPost(name: $name, body: $body, threadsId: $threadsId)
     }
   `;

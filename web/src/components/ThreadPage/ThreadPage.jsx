@@ -4,7 +4,7 @@ import { useMutation } from "react-apollo-hooks";
 
 import { useQuery } from "react-apollo-hooks";
 import Thread from "../Thread/Thread";
-import PostForm from "./PostForm";
+import PostForm from "../Forms/PostForm";
 
 export default function ThreadPage({ match }) {
   const handle = match.params.handle;

@@ -2,6 +2,7 @@ import React from "react";
 import gql from "graphql-tag";
 import { useQuery } from "react-apollo-hooks";
 import Thread from "../Thread/Thread";
+import ThreadsForm from "../Forms/ThreadsForm";
 
 export default function BoardPage({ match }) {
   const handle = match.params.handle;
@@ -9,6 +10,7 @@ export default function BoardPage({ match }) {
   const GET_BOARD = gql`
     {
       board(handle: "${handle}") {
+        id
         handle
         name
 
@@ -41,9 +43,7 @@ export default function BoardPage({ match }) {
         <h1>
           /{data.board.handle}/ - {data.board.name}
         </h1>
-        <p>
-          <b>[Start a new thread]</b>
-        </p>
+        <ThreadsForm boardsId={data.board.id} />
       </section>
       <section>
         {data.board.threads.map(thread => {
