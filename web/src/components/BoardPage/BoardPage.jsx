@@ -7,6 +7,7 @@ import ThreadsForm from "../Forms/ThreadsForm";
 
 export default function BoardPage({ match }) {
   const handle = match.params.handle;
+  const page = match.params.page;
 
   const GET_BOARD = gql`
     {
@@ -16,7 +17,7 @@ export default function BoardPage({ match }) {
         name
         totalThreads
 
-        threads(limit: 15) {
+        threads(limit: 15, offset: ${page ? page : 1}) {
           id
           subject
           name
@@ -24,7 +25,7 @@ export default function BoardPage({ match }) {
           totalPosts
           createdAt
 
-          posts(limit: 5) {
+          posts(limit: 5, order: "desc") {
             id
             name
             body
@@ -57,18 +58,23 @@ export default function BoardPage({ match }) {
               thread={thread}
               handle={handle}
               showTotalPosts
+              reverse
             />
           );
         })}
       </section>
       <section>
-        {Array(pageCount)
-          .fill()
-          .map((_, i) => (
-            <NavLink to={`/${data.board.handle}/${i}`} key={i}>
-              {i + 1}
-            </NavLink>
-          ))}
+        <div className="pagination">
+          {Array(pageCount)
+            .fill()
+            .map((_, i) => (
+              <span key={i}>
+                <NavLink to={`/${data.board.handle}/${i + 1}`}>
+                  [{i + 1}]
+                </NavLink>
+              </span>
+            ))}
+        </div>
       </section>
     </div>
   );

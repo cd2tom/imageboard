@@ -27,6 +27,7 @@ export default function App() {
             <Header />
             <Switch>
               <Route path={routes.thread} component={ThreadPage} />
+              <Route path={routes.boardPage} component={BoardPage} />
               <Route path={routes.board} component={BoardPage} />
               <Route path={routes.home} component={HomePage} />
             </Switch>

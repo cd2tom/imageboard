@@ -6,6 +6,7 @@ const typeDefs = gql`
     name: String!
     email: String!
     createdAt: String!
+    updatedAt: String!
     posts: [Post]
   }
   type Board {
@@ -13,8 +14,9 @@ const typeDefs = gql`
     name: String!
     handle: String!
     createdAt: String!
+    updatedAt: String!
     totalThreads: Int!
-    threads(limit: Int!): [Post]
+    threads(limit: Int!, offset: Int): [Post]
     thread(id: Int!): Post
   }
   type Post {
@@ -25,8 +27,9 @@ const typeDefs = gql`
     threadsId: ID!
     userdId: Int
     createdAt: String!
+    updatedAt: String!
     thread: Post
-    posts(limit: Int!): [Post]
+    posts(limit: Int, order: String): [Post]
     totalPosts: Int
     user: User
   }

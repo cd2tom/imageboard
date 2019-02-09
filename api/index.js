@@ -25,6 +25,9 @@ const resolvers = {
       const [id] = await database("posts")
         .returning("id")
         .insert({ name, body, threadsId });
+      await database("posts")
+        .where({ id: threadsId })
+        .update({ updatedAt: new Date() });
       return id;
     },
     createThread: async (_, { name, body, subject, boardsId }) => {

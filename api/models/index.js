@@ -3,12 +3,15 @@ const database = require("../database");
 function Board(attributes) {
   Object.assign(this, attributes);
 
-  this.threads = function({ limit }) {
-    let query = database("posts").where({
-      boardsId: attributes.id,
-      threadsId: null
-    });
-    if (limit) query.limit(limit);
+  this.threads = function({ limit, offset }) {
+    let query = database("posts")
+      .where({
+        boardsId: attributes.id,
+        threadsId: null
+      })
+      .orderBy("updatedAt", "desc")
+      .limit(limit);
+    if (offset) query = query.offset(limit * (offset - 1));
     return new Promise(function(resolve) {
       query.then(function(threads) {
         resolve(threads.map(thread => new Thread(thread)));
@@ -48,11 +51,11 @@ function Thread(attributes) {
       });
   });
 
-  this.posts = function({ limit }) {
+  this.posts = function({ limit, order = "asc" }) {
     let query = database("posts")
       .where({ threadsId: attributes.id })
-      .orderBy("createdAt", "asc");
-    if (limit) query.limit(limit);
+      .orderBy("createdAt", order);
+    if (limit) query = query.limit(limit);
     return new Promise(function(resolve) {
       query.then(function(posts) {
         resolve(posts.map(post => new Post(post)));

@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     t.string("name");
     t.string("email");
     t.timestamp("createdAt").defaultTo(knex.fn.now());
+    t.timestamp("updatedAt").defaultTo(knex.fn.now());
   });
 };
 

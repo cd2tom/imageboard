@@ -160,3 +160,20 @@ section {
     flex: 1;
   }
 }
+
+.pagination {
+  display: inline-block;
+  padding: $smallGutter;
+  background-color: $colorPost;
+  font-size: 0.85em;
+  border-bottom: 1px solid $colorPostBorder;
+  border-right: 1px solid $colorPostBorder;
+
+  span {
+    display: inline-block;
+  }
+
+  span + span {
+    margin-left: $smallerGutter;
+  }
+}
