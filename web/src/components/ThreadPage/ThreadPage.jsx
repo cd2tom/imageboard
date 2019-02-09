@@ -4,6 +4,7 @@ import { useMutation } from "react-apollo-hooks";
 
 import { useQuery } from "react-apollo-hooks";
 import Thread from "../Thread/Thread";
+import PostForm from "./PostForm";
 
 export default function ThreadPage({ match }) {
   const handle = match.params.handle;
@@ -56,31 +57,7 @@ export default function ThreadPage({ match }) {
         <h1>
           /{data.board.handle}/ - {data.board.name}
         </h1>
-        <p>
-          <b onClick={() => setShowForm(!showForm)}>[Post a reply]</b>
-          {showForm && (
-            <div className="form">
-              <div>
-                <label>Name</label>
-                <input
-                  type="text"
-                  value={post.name}
-                  onChange={e => setPost({ ...post, name: e.target.value })}
-                />
-              </div>
-              <div>
-                <label>Body</label>
-                <textarea
-                  value={post.body}
-                  onChange={e => setPost({ ...post, body: e.target.value })}
-                />
-              </div>
-              <div>
-                <button onClick={handleCreatePost}>Post</button>
-              </div>
-            </div>
-          )}
-        </p>
+        <PostForm threadsId={id} />
       </section>
       <section>
         <Thread

@@ -48,7 +48,9 @@ section {
     border-bottom: 1px solid $colorGrey;
 
     h1 {
-      margin-top: 0;
+      margin: 0 -#{$normalGutter} $normalGutter;
+      border-bottom: 1px solid $colorGrey;
+      padding: 0 0 $smallGutter;
     }
   }
 }
@@ -105,5 +107,56 @@ section {
 
   p {
     padding-left: $normalGutter;
+  }
+}
+
+.formContainer {
+  text-align: center;
+
+  b {
+    display: block;
+    cursor: pointer;
+    transition: $transitionSpeed;
+
+    &:hover {
+      color: $colorRed;
+    }
+  }
+}
+
+.form {
+  display: inline-block;
+  padding: $largeGutter $largeGutter $smallGutter;
+
+  > div {
+    display: flex;
+    align-items: stretch;
+  }
+
+  > div * {
+    text-align: left;
+  }
+
+  > div + div {
+    margin-top: $smallestGutter;
+  }
+
+  label {
+    padding: $smallerGutter $normalGutter;
+    background-color: $colorPrimaryDark;
+    line-height: 1;
+    width: 80px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    border: 1px solid $colorBlack;
+    font-size: 0.85em;
+    margin-right: $smallestGutter;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    flex: 1;
   }
 }
