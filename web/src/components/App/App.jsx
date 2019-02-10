@@ -14,7 +14,7 @@ import "../../css/core.scss";
 import FlashProvider from "../Flash/FlashProvider";
 
 const client = new ApolloClient({
-  uri: process.env.GQLENDPOINT
+  uri: process.env.IB_GQLENDPOINT
 });
 
 export default function App() {

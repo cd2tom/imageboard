@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "name": "imageboard-api",
+  "builds": [{ "src": "index.js", "use": "@now/node-server" }],
+  "routes": [{ "src": "/(.*)", "dest": "/index.js" }],
+  "env": {
+    "IB_PGDATABASE": "@ib_pgdatabase",
+    "IB_PGHOST": "@ib_pghost",
+    "IB_PGPORT": "@ib_pgport",
+    "IB_PGUSER": "@ib_pguser",
+    "IB_PGPASSWORD": "@ib_pgpassword"
+  }
+}

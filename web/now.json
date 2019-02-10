@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "name": "imageboard-web",
+  "builds": [{ "src": "package.json", "use": "@now/static-build" }],
+  "routes": [
+    { "src": "/(.+)(png|md|svg|css|map|jpg|js|txt)", "dest": "/$1$2" },
+    { "src": "/.*", "dest": "/index.html" }
+  ],
+  "env": {
+    "IB_GQLENDPOINT": "https://imageboard-api-fjw859ask.now.sh/graphql"
+  }
+}

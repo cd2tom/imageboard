@@ -5,7 +5,7 @@ const { ApolloServer } = require("apollo-server-express");
 
 const database = require("./database");
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 const HOST = process.env.HOST || "localhost";
 
 const typeDefs = require("./typeDefs");
