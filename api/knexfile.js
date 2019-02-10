@@ -8,8 +8,8 @@ module.exports = {
       password: process.env.IB_PGPASSWORD
     },
     pool: {
-      min: 2,
-      max: 10
+      min: 1,
+      max: 4
     },
     migrations: {
       tableName: "knex_migrations"
@@ -25,8 +25,8 @@ module.exports = {
       password: process.env.IB_PGPASSWORD
     },
     pool: {
-      min: 2,
-      max: 10
+      min: 1,
+      max: 4
     },
     migrations: {
       tableName: "knex_migrations"
@@ -43,8 +43,8 @@ module.exports = {
       ssl: true
     },
     pool: {
-      min: 2,
-      max: 5
+      min: 1,
+      max: 4
     },
     migrations: {
       tableName: "knex_migrations"
