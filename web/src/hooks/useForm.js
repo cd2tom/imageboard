@@ -1,9 +1,10 @@
 import { useState, useContext } from "react";
 import { FlashContext } from "../components/Flash/FlashProvider";
-import { useMutation } from "react-apollo-hooks";
+import { useApolloClient, useMutation } from "react-apollo-hooks";
 
 export function useForm({ MUTATION, modelName, defaults, afterUpdate }) {
   const { add } = useContext(FlashContext);
+  const client = useApolloClient();
 
   const [showForm, setShowForm] = useState(false);
   const [data, setData] = useState({ ...defaults });
@@ -13,6 +14,7 @@ export function useForm({ MUTATION, modelName, defaults, afterUpdate }) {
     update: function(proxy, result) {
       setShowForm(false);
       setData({ ...defaults });
+      client.resetStore();
     }
   });
 

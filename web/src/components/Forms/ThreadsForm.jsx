@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import gql from "graphql-tag";
-import { useMutation } from "react-apollo-hooks";
 import { useForm } from "../../hooks/useForm";
 
 export default function ThreadsForm({ boardsId }) {
