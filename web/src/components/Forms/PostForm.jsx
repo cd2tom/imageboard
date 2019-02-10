@@ -1,39 +1,19 @@
-import React, { useState, useContext } from "react";
-import { FlashContext } from "../Flash/FlashProvider";
+import React from "react";
 import gql from "graphql-tag";
-import { useMutation } from "react-apollo-hooks";
+import { useForm } from "../../hooks/useForm";
 
 export default function PostForm({ threadsId }) {
-  const { add } = useContext(FlashContext);
   const CREATE_POST = gql`
     mutation createPost($name: String, $body: String!, $threadsId: Int!) {
       createPost(name: $name, body: $body, threadsId: $threadsId)
     }
   `;
 
-  const [showForm, setShowForm] = useState(false);
-  const [post, setPost] = useState({ threadsId: Number(threadsId) });
-
-  const createPost = useMutation(CREATE_POST, {
-    variables: post,
-    update: function(proxy, result) {
-      console.log(proxy, result, "dasdasdsad");
-    }
+  const { data, setData, showForm, setShowForm, handleCreate } = useForm({
+    MUTATION: CREATE_POST,
+    defaults: { threadsId: Number(threadsId) },
+    modelName: "Post"
   });
-
-  function handleCreatePost() {
-    if (!post.body) {
-      add({ message: "Body can't be be blank", level: "Error" });
-      return;
-    }
-    createPost()
-      .then(() => {
-        add({ message: "Post created", level: "Success" });
-      })
-      .catch(e => {
-        add({ message: e.message, level: "Error" });
-      });
-  }
 
   return (
     <div className="formContainer">
@@ -46,8 +26,8 @@ export default function PostForm({ threadsId }) {
             <label>Name</label>
             <input
               type="text"
-              value={post.name}
-              onChange={e => setPost({ ...post, name: e.target.value })}
+              value={data.name}
+              onChange={e => setData({ ...data, name: e.target.value })}
             />
           </div>
           <div>
@@ -55,12 +35,12 @@ export default function PostForm({ threadsId }) {
             <textarea
               cols="48"
               rows="4"
-              value={post.body}
-              onChange={e => setPost({ ...post, body: e.target.value })}
+              value={data.body}
+              onChange={e => setData({ ...data, body: e.target.value })}
             />
           </div>
           <div>
-            <button onClick={handleCreatePost}>Post</button>
+            <button onClick={handleCreate}>Post</button>
           </div>
         </div>
       )}

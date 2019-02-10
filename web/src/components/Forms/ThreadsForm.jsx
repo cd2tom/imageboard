@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import gql from "graphql-tag";
 import { useMutation } from "react-apollo-hooks";
+import { useForm } from "../../hooks/useForm";
 
 export default function ThreadsForm({ boardsId }) {
   const CREATE_THREAD = gql`
@@ -19,11 +20,10 @@ export default function ThreadsForm({ boardsId }) {
     }
   `;
 
-  const [showForm, setShowForm] = useState(false);
-  const [thread, setThread] = useState({ boardsId: Number(boardsId) });
-
-  const handleCreatePost = useMutation(CREATE_THREAD, {
-    variables: thread
+  const { data, setData, showForm, setShowForm, handleCreate } = useForm({
+    MUTATION: CREATE_THREAD,
+    defaults: { boardsId: Number(boardsId) },
+    modelName: "Thread"
   });
 
   return (
@@ -37,16 +37,16 @@ export default function ThreadsForm({ boardsId }) {
             <label>Name</label>
             <input
               type="text"
-              value={thread.name}
-              onChange={e => setThread({ ...thread, name: e.target.value })}
+              value={data.name}
+              onChange={e => setData({ ...data, name: e.target.value })}
             />
           </div>
           <div>
             <label>Subject</label>
             <input
               type="text"
-              value={thread.subject}
-              onChange={e => setThread({ ...thread, subject: e.target.value })}
+              value={data.subject}
+              onChange={e => setData({ ...data, subject: e.target.value })}
             />
           </div>
           <div>
@@ -54,12 +54,12 @@ export default function ThreadsForm({ boardsId }) {
             <textarea
               cols="48"
               rows="4"
-              value={thread.body}
-              onChange={e => setThread({ ...thread, body: e.target.value })}
+              value={data.body}
+              onChange={e => setData({ ...data, body: e.target.value })}
             />
           </div>
           <div>
-            <button onClick={handleCreatePost}>Post</button>
+            <button onClick={handleCreate}>Post</button>
           </div>
         </div>
       )}
