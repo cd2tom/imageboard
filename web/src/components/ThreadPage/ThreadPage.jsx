@@ -19,6 +19,7 @@ export default function ThreadPage({ match }) {
   const GET_BOARD = gql`
     {
       board(handle: "${handle}") {
+        id
         handle
         name
 

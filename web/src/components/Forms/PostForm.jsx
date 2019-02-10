@@ -12,9 +12,25 @@ export default function PostForm({ threadsId }) {
   const [showForm, setShowForm] = useState(false);
   const [post, setPost] = useState({ threadsId: Number(threadsId) });
 
-  const handleCreatePost = useMutation(CREATE_POST, {
-    variables: post
+  const createPost = useMutation(CREATE_POST, {
+    variables: post,
+    update: function(proxy, result) {
+      console.log(proxy, result, "dasdasdsad");
+    }
   });
+
+  function handleCreatePost() {
+    if (!post.body) {
+      return;
+    }
+    createPost()
+      .then(resp => {
+        debugger;
+      })
+      .catch(e => {
+        debugger;
+      });
+  }
 
   return (
     <div className="formContainer">
