@@ -41,6 +41,21 @@ const resolvers = {
       const [id] = await database("posts")
         .returning("id")
         .insert({ name, body, subject, boardsId });
+
+      const [{ count }] = await database("posts")
+        .where({ threadsId: null, archived: false })
+        .count("id");
+
+      if (count > 225) {
+        const [threadToArchive] = await database("posts")
+          .where({ threadsId: null })
+          .orderBy("updatedAt", "asc");
+
+        await database("posts")
+          .where({ id: threadToArchive.id })
+          .update({ archived: true });
+      }
+
       return id;
     }
   }

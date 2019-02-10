@@ -7,7 +7,8 @@ function Board(attributes) {
     let query = database("posts")
       .where({
         boardsId: attributes.id,
-        threadsId: null
+        threadsId: null,
+        archived: false
       })
       .orderBy("updatedAt", "desc")
       .limit(limit);
@@ -22,7 +23,7 @@ function Board(attributes) {
   this.thread = function({ id }) {
     return new Promise(function(resolve) {
       database("posts")
-        .where({ id })
+        .where({ id, archived: false })
         .then(function([thread]) {
           resolve(new Thread(thread));
         });
@@ -31,7 +32,7 @@ function Board(attributes) {
 
   this.totalThreads = new Promise(function(resolve) {
     database("posts")
-      .where({ threadsId: null, boardsId: attributes.id })
+      .where({ threadsId: null, boardsId: attributes.id, archived: false })
       .count("id")
       .then(function([{ count }]) {
         resolve(count);

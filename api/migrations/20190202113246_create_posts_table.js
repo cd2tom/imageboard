@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     t.string("subject").defaultTo("");
     t.string("name").defaultTo("");
     t.string("body");
+    t.boolean("archived").defaultTo(false);
     t.integer("boardsId");
     t.integer("threadsId").defaultTo(null);
     t.integer("usersId").defaultTo(null);
