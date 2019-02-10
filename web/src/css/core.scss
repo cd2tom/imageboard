@@ -177,3 +177,62 @@ section {
     margin-left: $smallerGutter;
   }
 }
+
+.flashes {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: $smallGutter;
+  z-index: 2;
+}
+
+.flash {
+  margin: 0 auto;
+  max-width: 500px;
+  padding: $normalGutter;
+  color: $colorWhite;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16), 0 4px 4px rgba(0, 0, 0, 0.16);
+  transition: $transitionSpeed;
+  visibility: visible;
+
+  * {
+    color: $colorWhite !important;
+  }
+}
+
+.flashError {
+  background-color: $colorRed;
+}
+
+.flashSuccess {
+  background-color: $colorGreen;
+}
+
+.flashDefault {
+  background-color: $colorBlue;
+}
+
+.flashCollapse {
+  opacity: 0;
+  transform: scale(0);
+  visibility: hidden;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.flashClose {
+  cursor: pointer;
+  opacity: 0.66;
+  transition: $transitionSpeed;
+  padding: $smallGutter;
+  position: absolute;
+  top: $smallGutter;
+  right: $smallGutter;
+
+  &:hover {
+    opacity: 1;
+  }
+}

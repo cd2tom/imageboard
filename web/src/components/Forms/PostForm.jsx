@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { FlashContext } from "../Flash/FlashProvider";
 import gql from "graphql-tag";
 import { useMutation } from "react-apollo-hooks";
 
 export default function PostForm({ threadsId }) {
+  const { add } = useContext(FlashContext);
   const CREATE_POST = gql`
     mutation createPost($name: String, $body: String!, $threadsId: Int!) {
       createPost(name: $name, body: $body, threadsId: $threadsId)
@@ -21,14 +23,15 @@ export default function PostForm({ threadsId }) {
 
   function handleCreatePost() {
     if (!post.body) {
+      add({ message: "Body can't be be blank", level: "Error" });
       return;
     }
     createPost()
-      .then(resp => {
-        debugger;
+      .then(() => {
+        add({ message: "Post created", level: "Success" });
       })
       .catch(e => {
-        debugger;
+        add({ message: e.message, level: "Error" });
       });
   }
 

@@ -11,6 +11,7 @@ import ThreadPage from "../ThreadPage/ThreadPage";
 
 import "../../css/normalize.scss";
 import "../../css/core.scss";
+import FlashProvider from "../Flash/FlashProvider";
 
 const client = new ApolloClient({
   uri: process.env.GQLENDPOINT
@@ -21,18 +22,20 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <React.Suspense fallback="...">
-        <BrowserRouter>
-          <div className="pageWrapper">
-            <ScrollToTop />
-            <Header />
-            <Switch>
-              <Route path={routes.thread} component={ThreadPage} />
-              <Route path={routes.boardPage} component={BoardPage} />
-              <Route path={routes.board} component={BoardPage} />
-              <Route path={routes.home} component={HomePage} />
-            </Switch>
-          </div>
-        </BrowserRouter>
+        <FlashProvider>
+          <BrowserRouter>
+            <div className="pageWrapper">
+              <ScrollToTop />
+              <Header />
+              <Switch>
+                <Route path={routes.thread} component={ThreadPage} />
+                <Route path={routes.boardPage} component={BoardPage} />
+                <Route path={routes.board} component={BoardPage} />
+                <Route path={routes.home} component={HomePage} />
+              </Switch>
+            </div>
+          </BrowserRouter>
+        </FlashProvider>
       </React.Suspense>
     </ApolloProvider>
   );

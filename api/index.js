@@ -25,7 +25,6 @@ const resolvers = {
       const [{ count }] = await database("posts")
         .where({ threadsId })
         .count("id");
-
       if (count < 300) {
         const [id] = await database("posts")
           .returning("id")
