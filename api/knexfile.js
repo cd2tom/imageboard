@@ -45,19 +45,9 @@ module.exports = {
     pool: {
       min: 1,
       max: 4,
-      idleTimeoutMillis: 2000,
-      afterCreate: function(conn, done) {
-        conn.query('SET timezone="UTC";', function(err) {
-          if (err) {
-            done(err, conn);
-          } else {
-            conn.query("SELECT set_limit(0.01);", function(err) {
-              done(err, conn);
-            });
-          }
-        });
-      }
+      idleTimeoutMillis: 5000
     },
+    acquireConnectionTimeout: 30000,
     migrations: {
       tableName: "knex_migrations"
     }
