@@ -43,11 +43,11 @@ module.exports = {
       ssl: true
     },
     pool: {
-      min: 1,
-      max: 4,
-      idleTimeoutMillis: 5000
+      min: 0,
+      max: 5,
+      idleTimeoutMillis: 10000
     },
-    acquireConnectionTimeout: 30000,
+    acquireConnectionTimeout: 60000,
     migrations: {
       tableName: "knex_migrations"
     }
