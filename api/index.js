@@ -1,9 +1,11 @@
 require("dotenv").config();
 
+global.database = require("knex")(
+  require("./knexfile")[process.env.NODE_ENV || "development"]
+);
+
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
-
-const database = require("./database");
 
 const PORT = process.env.PORT;
 const HOST = process.env.HOST || "localhost";
@@ -22,14 +24,17 @@ const resolvers = {
   },
   Mutation: {
     createPost: async (_, { name, body, threadsId }) => {
-      const [{ count }] = await database("posts")
+      const [{ count }] = await global
+        .database("posts")
         .where({ threadsId })
         .count("id");
       if (count < 300) {
-        const [id] = await database("posts")
+        const [id] = await global
+          .database("posts")
           .returning("id")
           .insert({ name, body, threadsId });
-        await database("posts")
+        await global
+          .database("posts")
           .where({ id: threadsId })
           .update({ updatedAt: new Date() });
         return id;
@@ -38,20 +43,24 @@ const resolvers = {
       }
     },
     createThread: async (_, { name, body, subject, boardsId }) => {
-      const [id] = await database("posts")
+      const [id] = await global
+        .database("posts")
         .returning("id")
         .insert({ name, body, subject, boardsId });
 
-      const [{ count }] = await database("posts")
+      const [{ count }] = await global
+        .database("posts")
         .where({ threadsId: null, archived: false })
         .count("id");
 
       if (count > 225) {
-        const [threadToArchive] = await database("posts")
+        const [threadToArchive] = await global
+          .database("posts")
           .where({ threadsId: null })
           .orderBy("updatedAt", "asc");
 
-        await database("posts")
+        await global
+          .database("posts")
           .where({ id: threadToArchive.id })
           .update({ archived: true });
       }

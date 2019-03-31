@@ -1,8 +1,7 @@
-const database = require("../database");
 const { User } = require("../models");
 
 async function users() {
-  const userRecords = await database("users").select();
+  const userRecords = await global.database("users").select();
   return userRecords.map(userRecord => new User(userRecord));
 }
 

@@ -1,10 +1,9 @@
-const database = require("../database");
-
 function Board(attributes) {
   Object.assign(this, attributes);
 
   this.threads = function({ limit, offset }) {
-    let query = database("posts")
+    let query = global
+      .database("posts")
       .where({
         boardsId: attributes.id,
         threadsId: null,
@@ -22,7 +21,8 @@ function Board(attributes) {
 
   this.thread = function({ id }) {
     return new Promise(function(resolve) {
-      database("posts")
+      global
+        .database("posts")
         .where({ id, archived: false })
         .then(function([thread]) {
           resolve(new Thread(thread));
@@ -31,7 +31,8 @@ function Board(attributes) {
   };
 
   this.totalThreads = new Promise(function(resolve) {
-    database("posts")
+    global
+      .database("posts")
       .where({ threadsId: null, boardsId: attributes.id, archived: false })
       .count("id")
       .then(function([{ count }]) {
@@ -44,7 +45,8 @@ function Thread(attributes) {
   Object.assign(this, attributes);
 
   this.totalPosts = new Promise(function(resolve) {
-    database("posts")
+    global
+      .database("posts")
       .where({ threadsId: attributes.id })
       .count("id")
       .then(function([{ count }]) {
@@ -53,7 +55,8 @@ function Thread(attributes) {
   });
 
   this.posts = function({ limit, order = "asc" }) {
-    let query = database("posts")
+    let query = global
+      .database("posts")
       .where({ threadsId: attributes.id })
       .orderBy("createdAt", order);
     if (limit) query = query.limit(limit);
@@ -70,7 +73,8 @@ function Post(attributes) {
 
   this.user = attributes.userId
     ? new Promise(function(resolve) {
-        database("users")
+        global
+          .database("users")
           .where({ id: attributes.usersId })
           .then(function([user]) {
             resolve(new User(user));
@@ -83,7 +87,8 @@ function User(attributes) {
   Object.assign(this, attributes);
 
   this.posts = new Promise(function(resolve) {
-    database("posts")
+    global
+      .database("posts")
       .where({ usersId: attributes.id })
       .then(function(posts) {
         resolve(posts.map(post => new Post(post)));
