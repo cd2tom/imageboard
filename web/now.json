@@ -7,6 +7,6 @@
     { "src": "/.*", "dest": "/index.html" }
   ],
   "env": {
-    "IB_GQLENDPOINT": "https://imageboard-api-kqd4sjh73.now.sh/graphql"
+    "IB_GQLENDPOINT": "https://imageboard-api-68o6a650b.now.sh/graphql"
   }
 }
